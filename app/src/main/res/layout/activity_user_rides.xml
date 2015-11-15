@@ -16,11 +16,19 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
 
+    <ListView
+        android:id="@+id/list_rides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_rides_title">
+    </ListView>
+
     <Button
         android:id="@+id/button_rides_add"
         android:text="Add Ride"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/list_rides"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

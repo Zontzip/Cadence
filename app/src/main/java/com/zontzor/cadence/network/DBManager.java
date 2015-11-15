@@ -2,13 +2,14 @@ package com.zontzor.cadence.network;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -134,5 +135,16 @@ public class DBManager {
         initialValues.put(KEY_RIDE_USERID, uId);
         initialValues.put(KEY_RIDE_BICYCLEID, bikeId);
         return db.insert(TABLE_RIDES, null, initialValues);
+    }
+
+    public Cursor getRides() {
+        Cursor mCursor = db.rawQuery(
+                "SELECT * FROM rides;", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
     }
 }

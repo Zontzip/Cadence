@@ -1,23 +1,44 @@
 package com.zontzor.cadence.views;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.zontzor.cadence.R;
+import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.views.adapters.UserRidesCursorAdapter;
 
 public class UserRidesActivity extends Activity {
-    private Button btnAddRide;
+    DBManager db = new DBManager(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rides);
 
-        btnAddRide = (Button) findViewById(R.id.button_rides_add);
 
+        ListView listRides = (ListView) findViewById(R.id.list_rides);
+        Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
 
+        try {
+            db.open();
+            Cursor rides = db.getRides();
+            UserRidesCursorAdapter cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
+            listRides.setAdapter(cursorAdapter);
+            db.close();
+        } catch (Exception ex) {
+            Context context = getApplicationContext();
+            CharSequence text = "Error opening database";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
 
         btnAddRide.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.zontzor.cadence.R;
 
-public class MainMenuAdapter extends BaseAdapter {
+public class MainMenuGridAdapter extends BaseAdapter {
     private Context context;
     private final String[] menuOptions;
 
-    public MainMenuAdapter(Context context, String[] menuOptions) {
+    public MainMenuGridAdapter(Context context, String[] menuOptions) {
         this.context = context;
         this.menuOptions = menuOptions;
     }

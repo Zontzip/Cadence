@@ -10,7 +10,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zontzor.cadence.views.adapters.MainMenuAdapter;
+import com.zontzor.cadence.views.adapters.MainMenuGridAdapter;
 import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
 
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 
     public void setupGrid() {
         gridView = (GridView) findViewById(R.id.menu_grid);
-        gridView.setAdapter(new MainMenuAdapter(this, options));
+        gridView.setAdapter(new MainMenuGridAdapter(this, options));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
