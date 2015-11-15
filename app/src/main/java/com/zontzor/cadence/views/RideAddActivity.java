@@ -1,4 +1,4 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.zontzor.cadence.R;
+import com.zontzor.cadence.network.DBManager;
 
 public class RideAddActivity extends Activity {
     DBManager db = new DBManager(this);

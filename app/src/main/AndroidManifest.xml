@@ -11,22 +11,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name=".views.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserProfileActivity" >
+        <activity android:name=".views.UserProfileActivity" >
         </activity>
-        <activity android:name=".UserRidesActivity" >
+        <activity android:name=".views.UserRidesActivity" >
         </activity>
-        <activity android:name=".UserGoalsActivity" >
+        <activity android:name=".views.UserGoalsActivity" >
         </activity>
-        <activity android:name=".CadenceCalcActivity" >
+        <activity android:name=".views.CadenceCalcActivity" >
         </activity>
-        <activity android:name=".RideAddActivity" >
+        <activity android:name=".views.RideAddActivity" >
         </activity>
     </application>
 

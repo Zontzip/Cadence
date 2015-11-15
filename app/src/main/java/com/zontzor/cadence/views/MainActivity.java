@@ -1,4 +1,4 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zontzor.cadence.views.adapters.MainMenuAdapter;
+import com.zontzor.cadence.R;
+import com.zontzor.cadence.network.DBManager;
 
 public class MainActivity extends Activity {
     GridView gridView;

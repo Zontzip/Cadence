@@ -1,11 +1,7 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.network;
 
-/**
- * Created by Zontzor on 2015-11-14.
- */
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 

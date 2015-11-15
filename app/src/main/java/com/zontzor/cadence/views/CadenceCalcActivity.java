@@ -1,11 +1,10 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.views;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-/**
- * Created by Zontzor on 2015-10-26.
- */
+import com.zontzor.cadence.R;
+
 public class CadenceCalcActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

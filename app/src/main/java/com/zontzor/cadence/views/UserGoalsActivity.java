@@ -1,7 +1,9 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.views;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.zontzor.cadence.R;
 
 public class UserGoalsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {

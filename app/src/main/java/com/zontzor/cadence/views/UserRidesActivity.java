@@ -1,10 +1,12 @@
-package com.zontzor.cadence;
+package com.zontzor.cadence.views;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.zontzor.cadence.R;
 
 public class UserRidesActivity extends Activity {
     private Button btnAddRide;
@@ -14,6 +16,8 @@ public class UserRidesActivity extends Activity {
         setContentView(R.layout.activity_user_rides);
 
         btnAddRide = (Button) findViewById(R.id.button_rides_add);
+
+
 
         btnAddRide.setOnClickListener(new View.OnClickListener() {
             @Override
