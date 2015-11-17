@@ -21,22 +21,18 @@ public class UserRidesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rides);
 
-
         ListView listRides = (ListView) findViewById(R.id.list_rides);
         Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
 
         try {
             db.open();
             Cursor rides = db.getRides();
-            UserRidesCursorAdapter cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
-            listRides.setAdapter(cursorAdapter);
+            String str = rides.getString(rides.getColumnIndex("ridename"));
+            //UserRidesCursorAdapter cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
+            //listRides.setAdapter(cursorAdapter);
             db.close();
         } catch (Exception ex) {
-            Context context = getApplicationContext();
-            CharSequence text = "Error opening database";
-            int duration = Toast.LENGTH_LONG;
-
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(getApplicationContext(), "Error opening database", Toast.LENGTH_LONG);
             toast.show();
         }
 

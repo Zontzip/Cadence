@@ -5,22 +5,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
-    private static final String TABLE_USERS = "users";
+    private static final String TABLE_USERS = "Users";
     private static final String KEY_USER_ID = "_userid";
     private static final String KEY_USER_USERNAME = "username";
     private static final String KEY_USER_PASSWORD = "password";
     private static final String KEY_USER_FIRSTNAME = "firstname";
     private static final String KEY_USER_LASTNAME = "lastname";
 
-    private static final String TABLE_BICYCLES = "bicycles";
+    private static final String TABLE_BICYCLES = "Bicycles";
     private static final String KEY_BICYCLE_ID = "_bicycleid";
     private static final String KEY_BICYCLE_NAME = "bicyclename";
     private static final String KEY_BICYCLE_TYPE = "bicycletype";
@@ -28,7 +29,7 @@ public class DBManager {
     private static final String KEY_BICYCLE_NOTES = "bicyclenotes";
     private static final String KEY_BICYCLE_USERID = "_userid";
 
-    private static final String TABLE_RIDES = "rides";
+    private static final String TABLE_RIDES = "Rides";
     private static final String KEY_RIDE_ID = "_rideid";
     private static final String KEY_RIDE_RIDENAME = "ridename";
     private static final String KEY_RIDE_RIDEDURATION = "rideduration";
@@ -139,7 +140,7 @@ public class DBManager {
 
     public Cursor getRides() {
         Cursor mCursor = db.rawQuery(
-                "SELECT * FROM rides;", null);
+                "SELECT ridename FROM Rides;", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();
