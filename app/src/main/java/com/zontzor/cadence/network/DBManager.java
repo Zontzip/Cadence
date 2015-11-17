@@ -140,7 +140,7 @@ public class DBManager {
 
     public Cursor getRides() {
         Cursor mCursor = db.rawQuery(
-                "SELECT ridename FROM Rides;", null);
+                "SELECT * FROM Rides;", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

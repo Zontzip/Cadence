@@ -27,7 +27,13 @@ public class UserRidesActivity extends Activity {
         try {
             db.open();
             Cursor rides = db.getRides();
-            String str = rides.getString(rides.getColumnIndex("ridename"));
+            String str;
+
+            if (rides.moveToFirst()) {
+                str = rides.getString(rides.getColumnIndex("ridename"));
+                Toast toast = Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG);
+                toast.show();
+            }
             //UserRidesCursorAdapter cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
             //listRides.setAdapter(cursorAdapter);
             db.close();

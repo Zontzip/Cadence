@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
         try {
             db.open();
-            //testDB();
+            testDB();
             db.close();
         } catch (Exception ex) {
             Context context = getApplicationContext();
