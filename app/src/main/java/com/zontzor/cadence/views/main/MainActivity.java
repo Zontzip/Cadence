@@ -1,8 +1,8 @@
-package com.zontzor.cadence.views;
+package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,27 +17,16 @@ import com.zontzor.cadence.network.DBManager;
 public class MainActivity extends Activity {
     GridView gridView;
     DBManager db = new DBManager(this);
+
     static final String[] options = new String[] {
-            "Profile", "Rides","Goals", "Cadence" };
+            "Profile", "Rides","Goals" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            db.open();
-            testDB();
-            db.close();
-        } catch (Exception ex) {
-            Context context = getApplicationContext();
-            CharSequence text = "Error opening database";
-            int duration = Toast.LENGTH_LONG;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-
+        testDB();
         setupGrid();
     }
 
@@ -62,9 +51,6 @@ public class MainActivity extends Activity {
                     case "Goals":
                         myNewActivity = new Intent(MainActivity.this, UserGoalsActivity.class);
                         break;
-                    case "Cadence":
-                        myNewActivity = new Intent(MainActivity.this, CadenceCalcActivity.class);
-                        break;
                 }
 
                 startActivity(myNewActivity);
@@ -74,15 +60,34 @@ public class MainActivity extends Activity {
 
     public void testDB() {
         try {
-            db.insertUser("Zont", "1234", "Alex", "Kiernan");
-            db.insertBicycle("My Racer", "Road Bike", "Bianchi", "Bike has 11 speed groupset", 1);
-            db.insertRide("Lunch Ride", 3, 1, 1);
-        } catch (Exception e) {
-            Context context = getApplicationContext();
-            CharSequence text = "Error inserting data";
-            int duration = Toast.LENGTH_LONG;
+            db.open();
+            Cursor rides = db.getRides();
+            String str;
 
-            Toast toast = Toast.makeText(context, text, duration);
+            if (rides.moveToFirst()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Database exists",
+                        Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Creating database",
+                        Toast.LENGTH_LONG);
+                toast.show();
+
+                db.insertUser("Zont", "1234", "Alex Kiernan");
+                db.insertUser("Dollah", "6789", "Abdul Hakim");
+
+                db.insertBicycle("Racer", "Road Bike", "Bianchi", "Bike has 11 speed groupset", 1);
+                db.insertBicycle("Commuter", "Fixed Gear", "Dolan", "46 x 17 gear ratio", 1);
+                db.insertBicycle("Commutter", "City Bike", "Dublin Bike", "Three speed", 2);
+
+                db.insertRide("Lunch Ride", 3, 1, 1);
+                db.insertRide("Morning Commute", 1, 1, 2);
+            }
+
+            db.close();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Error inserting data",
+                    Toast.LENGTH_LONG);
             toast.show();
         }
     }

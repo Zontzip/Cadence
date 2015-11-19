@@ -10,19 +10,18 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 11;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
     private static final String TABLE_USERS = "Users";
-    private static final String KEY_USER_ID = "_userid";
+    private static final String KEY_USER_ID = "_id";
     private static final String KEY_USER_USERNAME = "username";
     private static final String KEY_USER_PASSWORD = "password";
-    private static final String KEY_USER_FIRSTNAME = "firstname";
-    private static final String KEY_USER_LASTNAME = "lastname";
+    private static final String KEY_USER_NAME = "name";
 
     private static final String TABLE_BICYCLES = "Bicycles";
-    private static final String KEY_BICYCLE_ID = "_bicycleid";
+    private static final String KEY_BICYCLE_ID = "_id";
     private static final String KEY_BICYCLE_NAME = "bicyclename";
     private static final String KEY_BICYCLE_TYPE = "bicycletype";
     private static final String KEY_BICYLE_BRAND = "bicyclebrand";
@@ -30,7 +29,7 @@ public class DBManager {
     private static final String KEY_BICYCLE_USERID = "_userid";
 
     private static final String TABLE_RIDES = "Rides";
-    private static final String KEY_RIDE_ID = "_rideid";
+    private static final String KEY_RIDE_ID = "_id";
     private static final String KEY_RIDE_RIDENAME = "ridename";
     private static final String KEY_RIDE_RIDEDURATION = "rideduration";
     private static final String KEY_RIDE_USERID = "_userid";
@@ -41,8 +40,7 @@ public class DBManager {
             KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_USER_USERNAME + " TEXT," +
             KEY_USER_PASSWORD + " TEXT," +
-            KEY_USER_FIRSTNAME + " TEXT," +
-            KEY_USER_LASTNAME + " TEXT);";
+            KEY_USER_NAME + " TEXT);";
 
     private static final String CREATE_BICYCLE_TABLE =
         "CREATE TABLE " + TABLE_BICYCLES + " (" +
@@ -110,12 +108,11 @@ public class DBManager {
         DBHelper.close();
     }
 
-    public long insertUser(String uName, String passwd, String fName, String lName) {
+    public long insertUser(String uName, String passwd, String name) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_USER_USERNAME, uName);
         initialValues.put(KEY_USER_PASSWORD, passwd);
-        initialValues.put(KEY_USER_FIRSTNAME, fName);
-        initialValues.put(KEY_USER_LASTNAME, lName);
+        initialValues.put(KEY_USER_NAME, name);
         return db.insert(TABLE_USERS, null, initialValues);
     }
 
@@ -140,7 +137,18 @@ public class DBManager {
 
     public Cursor getRides() {
         Cursor mCursor = db.rawQuery(
-                "SELECT * FROM Rides;", null);
+                "SELECT * FROM " + TABLE_RIDES + ";", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor getUser() {
+        Cursor mCursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_ID + " = 1;", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

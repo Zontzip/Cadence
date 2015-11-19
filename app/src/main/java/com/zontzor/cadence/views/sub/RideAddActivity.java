@@ -1,4 +1,4 @@
-package com.zontzor.cadence.views;
+package com.zontzor.cadence.views.sub;
 
 import android.app.Activity;
 import android.content.Context;

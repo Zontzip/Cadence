@@ -48,8 +48,6 @@ public class MainMenuGridAdapter extends BaseAdapter {
                 imageView.setImageResource(R.mipmap.ic_menu_rides);
             } else if (option.equals("Goals")) {
                 imageView.setImageResource(R.mipmap.ic_menu_goals);
-            } else if (option.equals("Cadence")){
-                imageView.setImageResource(R.mipmap.ic_menu_cadence);
             }
 
         } else {

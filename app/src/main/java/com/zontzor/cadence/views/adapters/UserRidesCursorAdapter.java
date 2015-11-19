@@ -23,7 +23,7 @@ public class UserRidesCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         TextView rideName = (TextView) view.findViewById(R.id.text_ride_name);
 
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("ridename"));
+        String name = cursor.getString(cursor.getColumnIndex("ridename"));
 
         rideName.setText(name);
     }

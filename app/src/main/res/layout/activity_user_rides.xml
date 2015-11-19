@@ -28,5 +28,6 @@
         android:text="Add Ride"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/list_rides"/>
+        android:layout_below="@+id/list_rides"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

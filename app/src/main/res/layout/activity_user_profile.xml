@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/text_profile_title"
+        android:text="Profile"
+        android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"/>
-</LinearLayout>
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_profile_label_name"
+        android:text="Name: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_profile_title"/>
+
+    <TextView
+        android:id="@+id/text_profile_name"
+        android:text="test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_profile_title"
+        android:layout_toEndOf = "@+id/text_profile_label_name"/>
+
+    <TextView
+        android:id="@+id/text_profile_label_rides"
+        android:text="Rides: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_profile_label_name"/>
+
+    <TextView
+        android:id="@+id/text_profile_rides"
+        android:text="test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_profile_label_name"
+        android:layout_toEndOf="@+id/text_profile_label_rides"/>
+</RelativeLayout>

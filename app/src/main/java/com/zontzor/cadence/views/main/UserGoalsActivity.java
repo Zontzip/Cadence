@@ -1,13 +1,13 @@
-package com.zontzor.cadence.views;
+package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import com.zontzor.cadence.R;
 
-public class CadenceCalcActivity extends Activity {
+public class UserGoalsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadence_calc);
+        setContentView(R.layout.activity_user_goals);
     }
 }
