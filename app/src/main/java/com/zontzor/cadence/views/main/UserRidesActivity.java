@@ -1,10 +1,12 @@
 package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,16 +36,31 @@ public class UserRidesActivity extends Activity {
                 startActivity(addRideActivity);
             }
         });
+
+        listRides.setOnItemClickListener(
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> av, View view, int position, long id) {
+                    Cursor mycursor = (Cursor) av.getItemAtPosition(position);
+                    String selection = mycursor.getString(1);
+
+                    Toast toast = Toast.makeText(getApplicationContext(), selection,
+                            Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        );
     }
 
     public void getRides() {
         try {
             db.open();
-            Cursor rides = db.getRides();
 
+            Cursor rides = db.getRides();
             UserRidesCursorAdapter cursorAdapter = new UserRidesCursorAdapter
                     (UserRidesActivity.this, rides);
             listRides.setAdapter(cursorAdapter);
+
             db.close();
         } catch (Exception ex) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
