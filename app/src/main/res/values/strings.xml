@@ -2,4 +2,5 @@
     <string name="app_name">Cadence</string>
     <string name="title_text">Main Menu</string>
     <string name="login">Login</string>
+    <string name="title_activity_ride_view">RideViewActivity</string>
 </resources>
