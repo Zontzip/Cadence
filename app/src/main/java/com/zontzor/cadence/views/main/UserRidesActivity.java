@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,10 +51,26 @@ public class UserRidesActivity extends Activity {
 
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        // info contains '_id'
+        int index = (int) info.id;
+
         switch (item.getItemId()) {
             case R.id.item_edit_ride:
                 return true;
             case R.id.item_delete_ride:
+                try {
+                    db.open();
+
+                    db.deleteRide(index);
+
+                    db.close();
+                } catch (Exception ex) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -72,7 +89,7 @@ public class UserRidesActivity extends Activity {
             db.close();
         } catch (Exception ex) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
-                    Toast.LENGTH_LONG);
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }

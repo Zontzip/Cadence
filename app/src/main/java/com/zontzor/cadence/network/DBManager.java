@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 36;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -150,6 +150,16 @@ public class DBManager {
         Cursor mCursor = db.rawQuery(
                 "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_ID + " = 1;", null);
 
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor deleteRide(int rideId) {
+        Cursor mCursor = db.rawQuery("DELETE FROM " + TABLE_RIDES + " WHERE " + KEY_RIDE_ID + " = "
+                + rideId + ";", null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }

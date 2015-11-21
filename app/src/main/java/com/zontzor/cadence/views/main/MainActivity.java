@@ -82,6 +82,10 @@ public class MainActivity extends Activity {
 
                 db.insertRide("Lunch Ride", 3, 1, 1);
                 db.insertRide("Morning Commute", 1, 1, 2);
+                db.insertRide("Test Ride 1", 3, 1, 1);
+                db.insertRide("Test Commute 1", 1, 1, 2);
+                db.insertRide("Test Ride 2", 3, 1, 1);
+                db.insertRide("Test Commute 2", 1, 1, 2);
             }
 
             db.close();
