@@ -66,11 +66,11 @@ public class MainActivity extends Activity {
 
             if (rides.moveToFirst()) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Database exists",
-                        Toast.LENGTH_LONG);
+                        Toast.LENGTH_SHORT);
                 toast.show();
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Creating database",
-                        Toast.LENGTH_LONG);
+                        Toast.LENGTH_SHORT);
                 toast.show();
 
                 db.insertUser("Zont", "1234", "Alex Kiernan");
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
             db.close();
         } catch (Exception e) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error inserting data",
-                    Toast.LENGTH_LONG);
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }

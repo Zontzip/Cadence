@@ -37,7 +37,7 @@ public class UserProfileActivity extends Activity {
             db.close();
         } catch (Exception ex) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
-                    Toast.LENGTH_LONG);
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }

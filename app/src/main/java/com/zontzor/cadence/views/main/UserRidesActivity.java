@@ -1,10 +1,12 @@
 package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,6 +28,7 @@ public class UserRidesActivity extends Activity {
 
         listRides = (ListView) findViewById(R.id.list_rides);
         Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
+        registerForContextMenu(listRides);
 
         getRides();
 
@@ -36,20 +39,25 @@ public class UserRidesActivity extends Activity {
                 startActivity(addRideActivity);
             }
         });
+    }
 
-        listRides.setOnItemClickListener(
-            new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> av, View view, int position, long id) {
-                    Cursor mycursor = (Cursor) av.getItemAtPosition(position);
-                    String selection = mycursor.getString(1);
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_view_ride, menu);
+    }
 
-                    Toast toast = Toast.makeText(getApplicationContext(), selection,
-                            Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            }
-        );
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.item_edit_ride:
+                return true;
+            case R.id.item_delete_ride:
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     public void getRides() {

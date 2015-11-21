@@ -35,7 +35,7 @@ public class RideAddActivity extends Activity {
                 } catch (Exception e) {
                     Context context = getApplicationContext();
                     CharSequence text = "Error opening database";
-                    int duration = Toast.LENGTH_LONG;
+                    int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
