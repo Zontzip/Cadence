@@ -3,4 +3,12 @@
     <string name="title_text">Main Menu</string>
     <string name="login">Login</string>
     <string name="title_activity_ride_view">RideViewActivity</string>
+
+    <string-array name="bikes_array">
+        <item>Road Bike</item>
+        <item>Track Bike</item>
+        <item>Triathlon Bike</item>
+        <item>City Bike</item>
+        <item>Mountain Bike</item>
+    </string-array>
 </resources>

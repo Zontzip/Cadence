@@ -77,11 +77,10 @@ public class MainActivity extends Activity {
                 toast.show();
 
                 db.insertUser("Zont", "1234", "Alex Kiernan");
-                db.insertUser("Dollah", "6789", "Abdul Hakim");
 
                 db.insertBicycle("Racer", "Road Bike", "Bianchi", "Bike has 11 speed groupset", 1);
                 db.insertBicycle("Commuter", "Fixed Gear", "Dolan", "46 x 17 gear ratio", 1);
-                db.insertBicycle("Commutter", "City Bike", "Dublin Bike", "Three speed", 2);
+                db.insertBicycle("Commutter", "City Bike", "Dublin Bike", "Three speed", 1);
 
                 db.insertRide("Lunch Ride", "22/11/2015", 3, 1, 1);
                 db.insertRide("Morning Commute", "22/11/2015", 1, 1, 2);

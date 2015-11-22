@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 41;
+    private static final int DATABASE_VERSION = 42;
 
     private static final String DATABASE_NAME = "Cadence.db";
 

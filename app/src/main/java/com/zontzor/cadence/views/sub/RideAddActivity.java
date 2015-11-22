@@ -39,11 +39,8 @@ public class RideAddActivity extends Activity {
                     db.insertRide(rideName.getText().toString(), date, Integer.parseInt(rideDuration.getText().toString()), 1, 1);
                     db.close();
                 } catch (Exception e) {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Error opening database";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                            Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
