@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 36;
+    private static final int DATABASE_VERSION = 41;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -31,6 +31,7 @@ public class DBManager {
     private static final String TABLE_RIDES = "Rides";
     private static final String KEY_RIDE_ID = "_id";
     private static final String KEY_RIDE_RIDENAME = "ridename";
+    private static final String KEY_RIDE_RIDEDATE = "ridedate";
     private static final String KEY_RIDE_RIDEDURATION = "rideduration";
     private static final String KEY_RIDE_USERID = "_userid";
     private static final String KEY_RIDE_BICYCLEID = "_bicycleid";
@@ -57,6 +58,7 @@ public class DBManager {
         "CREATE TABLE " + TABLE_RIDES + " (" +
             KEY_RIDE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_RIDE_RIDENAME + " TEXT," +
+            KEY_RIDE_RIDEDATE + " TEXT," +
             KEY_RIDE_RIDEDURATION + " INTEGER," +
             KEY_RIDE_USERID + " INTEGER," +
             KEY_RIDE_BICYCLEID + " INTEGER," +
@@ -126,9 +128,10 @@ public class DBManager {
         return db.insert(TABLE_BICYCLES, null, initialValues);
     }
 
-    public long insertRide(String rName, int dur, int uId, int bikeId) {
+    public long insertRide(String rName, String rDate, int dur, int uId, int bikeId) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_RIDE_RIDENAME, rName);
+        initialValues.put(KEY_RIDE_RIDEDATE, rDate);
         initialValues.put(KEY_RIDE_RIDEDURATION, dur);
         initialValues.put(KEY_RIDE_USERID, uId);
         initialValues.put(KEY_RIDE_BICYCLEID, bikeId);
@@ -157,9 +160,30 @@ public class DBManager {
         return mCursor;
     }
 
-    public Cursor deleteRide(int rideId) {
+    public Cursor getBikes() {
+        Cursor mCursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_BICYCLES + ";", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor deleteRide(int id) {
         Cursor mCursor = db.rawQuery("DELETE FROM " + TABLE_RIDES + " WHERE " + KEY_RIDE_ID + " = "
-                + rideId + ";", null);
+                + id + ";", null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor deleteBike(int id) {
+        Cursor mCursor = db.rawQuery("DELETE FROM " + TABLE_BICYCLES + " WHERE " + KEY_BICYCLE_ID + " = "
+                + id + ";", null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }

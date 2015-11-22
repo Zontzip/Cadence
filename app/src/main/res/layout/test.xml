@@ -9,35 +9,55 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/text_profile_label"
-            android:text="Profile"
-            android:textSize="24sp"
+        <ImageView
+            android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Find Dishes"
+
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/black" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/text_profile_name"
-            android:text="Welcome "
-            android:textSize="24sp"
+        <ImageView
+            android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Recomanded Dishes"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:background="@android:color/black" />
 
     <LinearLayout
@@ -54,26 +74,24 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/text_profile_label_rides"
+            <ImageView
+                android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Rides"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/text_profile_rides"
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="follow people"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="3dp"
             android:layout_height="fill_parent"
             android:background="@android:color/black" />
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -81,18 +99,23 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/text_profile_label_bikes"
+            <ImageView
+                android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Number of bikes"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Profile"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </LinearLayout>
-
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:background="@android:color/black" />
 
     <LinearLayout
@@ -109,8 +132,14 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
             <TextView
-                android:id="@+id/text_profile_label_edit_profile"
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Notifications"
@@ -118,7 +147,7 @@
         </LinearLayout>
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="3dp"
             android:layout_height="fill_parent"
             android:background="@android:color/black" />
         <LinearLayout
@@ -128,11 +157,17 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/text_profile_label_goals"
+            <ImageView
+                android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goals"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up/Sign-In"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </LinearLayout>

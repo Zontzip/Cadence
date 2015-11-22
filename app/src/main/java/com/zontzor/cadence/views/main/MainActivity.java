@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
     DBManager db = new DBManager(this);
 
     static final String[] options = new String[] {
-            "Profile", "Rides","Goals" };
+            "Profile", "Rides","Goals", "Bikes" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,9 @@ public class MainActivity extends Activity {
                     case "Goals":
                         myNewActivity = new Intent(MainActivity.this, UserGoalsActivity.class);
                         break;
+                    case "Bikes":
+                        myNewActivity = new Intent(MainActivity.this, UserBikesActivity.class);
+                        break;
                 }
 
                 startActivity(myNewActivity);
@@ -80,12 +83,12 @@ public class MainActivity extends Activity {
                 db.insertBicycle("Commuter", "Fixed Gear", "Dolan", "46 x 17 gear ratio", 1);
                 db.insertBicycle("Commutter", "City Bike", "Dublin Bike", "Three speed", 2);
 
-                db.insertRide("Lunch Ride", 3, 1, 1);
-                db.insertRide("Morning Commute", 1, 1, 2);
-                db.insertRide("Test Ride 1", 3, 1, 1);
-                db.insertRide("Test Commute 1", 1, 1, 2);
-                db.insertRide("Test Ride 2", 3, 1, 1);
-                db.insertRide("Test Commute 2", 1, 1, 2);
+                db.insertRide("Lunch Ride", "22/11/2015", 3, 1, 1);
+                db.insertRide("Morning Commute", "22/11/2015", 1, 1, 2);
+                db.insertRide("Test Ride 1", "22/11/2015", 3, 1, 1);
+                db.insertRide("Test Commute 1", "22/11/2015", 1, 1, 2);
+                db.insertRide("Test Ride 2", "22/11/2015", 3, 1, 1);
+                db.insertRide("Test Commute 2", "22/11/2015", 1, 1, 2);
             }
 
             db.close();

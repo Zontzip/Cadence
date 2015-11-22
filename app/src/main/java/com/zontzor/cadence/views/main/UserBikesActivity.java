@@ -15,28 +15,28 @@ import android.widget.Toast;
 
 import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
-import com.zontzor.cadence.views.sub.RideAddActivity;
-import com.zontzor.cadence.views.adapters.UserRidesCursorAdapter;
+import com.zontzor.cadence.views.adapters.UserBikesCursorAdapter;
+import com.zontzor.cadence.views.sub.BikeAddActivity;
 
-public class UserRidesActivity extends Activity {
+public class UserBikesActivity extends Activity {
     DBManager db = new DBManager(this);
-    ListView listRides;
-    UserRidesCursorAdapter cursorAdapter;
+    ListView listBikes;
+    UserBikesCursorAdapter cursorAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_rides);
+        setContentView(R.layout.activity_user_bikes);
 
-        listRides = (ListView) findViewById(R.id.list_rides);
-        Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
-        registerForContextMenu(listRides);
+        listBikes = (ListView) findViewById(R.id.list_bikes);
+        Button btnAddRide = (Button) findViewById(R.id.button_bikes_add);
+        registerForContextMenu(listBikes);
 
         try {
             db.open();
 
-            Cursor rides = db.getRides();
-            cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
-            listRides.setAdapter(cursorAdapter);
+            Cursor bikes = db.getBikes();
+            cursorAdapter = new UserBikesCursorAdapter(UserBikesActivity.this, bikes);
+            listBikes.setAdapter(cursorAdapter);
 
             db.close();
         } catch (Exception ex) {
@@ -48,8 +48,8 @@ public class UserRidesActivity extends Activity {
         btnAddRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addRideActivity = new Intent(UserRidesActivity.this, RideAddActivity.class);
-                startActivity(addRideActivity);
+                Intent addBikeActivity = new Intent(UserBikesActivity.this, BikeAddActivity.class);
+                startActivity(addBikeActivity);
             }
         });
     }
@@ -76,8 +76,8 @@ public class UserRidesActivity extends Activity {
                 try {
                     db.open();
 
-                    Cursor cursor = db.deleteRide(index);
-                    cursor = db.getRides();
+                    Cursor cursor = db.deleteBike(index);
+                    cursor = db.getBikes();
 
                     db.close();
                     cursorAdapter.changeCursor(cursor);

@@ -11,6 +11,10 @@ import android.widget.Toast;
 import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RideAddActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText rideName;
@@ -25,12 +29,14 @@ public class RideAddActivity extends Activity {
         rideDuration = (EditText) findViewById(R.id.editText_ride_duration);
         btnAddRide = (Button) findViewById(R.id.button_add_ride);
 
+        final String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+
         btnAddRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     db.open();
-                    db.insertRide(rideName.getText().toString(), Integer.parseInt(rideDuration.getText().toString()), 1, 1);
+                    db.insertRide(rideName.getText().toString(), date, Integer.parseInt(rideDuration.getText().toString()), 1, 1);
                     db.close();
                 } catch (Exception e) {
                     Context context = getApplicationContext();

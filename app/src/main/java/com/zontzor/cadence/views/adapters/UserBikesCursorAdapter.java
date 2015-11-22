@@ -10,24 +10,22 @@ import android.widget.TextView;
 
 import com.zontzor.cadence.R;
 
-public class UserRidesCursorAdapter extends CursorAdapter {
-    public UserRidesCursorAdapter(Context context, Cursor cursor) {
+public class UserBikesCursorAdapter extends CursorAdapter {
+    public UserBikesCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.adapter_user_rides, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.adapter_user_bikes, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView rideName = (TextView) view.findViewById(R.id.text_ride_name);
-        TextView rideDate = (TextView) view.findViewById(R.id.text_ride_date);
+        TextView rideName = (TextView) view.findViewById(R.id.text_bike_name);
 
-        String name = cursor.getString(cursor.getColumnIndex("ridename"));
-        String date = cursor.getString(cursor.getColumnIndex("ridedate"));
+        String name = cursor.getString(cursor.getColumnIndex("bicyclename"));
 
         rideName.setText(name);
-        rideDate.setText(date);
     }
 }
+

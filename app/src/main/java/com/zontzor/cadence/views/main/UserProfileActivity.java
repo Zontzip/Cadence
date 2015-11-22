@@ -28,11 +28,12 @@ public class UserProfileActivity extends Activity {
             // Get users fullname
             cursor = db.getUser();
             String name = cursor.getString(cursor.getColumnIndex("name"));
-            txtName.setText(name);
+            txtName.setText("Welcome " + name);
             // Get users number of rides
             cursor = db.getRides();
-            String rideCount = cursor.getString(cursor.getCount());
-            txtRides.setText(rideCount);
+            int rideCount = cursor.getCount();
+            String rideCounts = Integer.toString(rideCount);
+            txtRides.setText(rideCounts);
 
             db.close();
         } catch (Exception ex) {
