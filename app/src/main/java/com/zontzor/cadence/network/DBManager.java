@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 42;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -33,8 +33,15 @@ public class DBManager {
     private static final String KEY_RIDE_RIDENAME = "ridename";
     private static final String KEY_RIDE_RIDEDATE = "ridedate";
     private static final String KEY_RIDE_RIDEDURATION = "rideduration";
+    private static final String KEY_RIDE_RIDEDISTANCE = "ridedistance";
     private static final String KEY_RIDE_USERID = "_userid";
     private static final String KEY_RIDE_BICYCLEID = "_bicycleid";
+
+    private static final String TABLE_GOALS = "Goals";
+    private static final String KEY_GOAL_ID = "_id";
+    private static final String KEY_GOAL_VALUE = "goalvalue";
+    private static final String KEY_GOAL_COMPLETED = "completed";
+    private static final String KEY_GOAL_USERID = "_userid";
 
     private static final String CREATE_USERS_TABLE =
         "CREATE TABLE " + TABLE_USERS + " (" +
@@ -60,12 +67,22 @@ public class DBManager {
             KEY_RIDE_RIDENAME + " TEXT," +
             KEY_RIDE_RIDEDATE + " TEXT," +
             KEY_RIDE_RIDEDURATION + " INTEGER," +
+            KEY_RIDE_RIDEDISTANCE + " INTEGER," +
             KEY_RIDE_USERID + " INTEGER," +
             KEY_RIDE_BICYCLEID + " INTEGER," +
             "FOREIGN KEY(" + KEY_RIDE_USERID + ") REFERENCES " + TABLE_USERS +
                 "(" + KEY_USER_ID + ")," +
             "FOREIGN KEY(" + KEY_RIDE_BICYCLEID + ") REFERENCES " + TABLE_BICYCLES +
                 "(" + KEY_BICYCLE_ID + "));";
+
+    private static final String CREATE_GOAL_TABLE =
+            "CREATE TABLE " + TABLE_GOALS + " (" +
+                    KEY_GOAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    KEY_GOAL_VALUE + " INTEGER," +
+                    KEY_GOAL_COMPLETED + " INTEGER," +
+                    KEY_GOAL_USERID  + " INTEGER," +
+                    "FOREIGN KEY(" + KEY_GOAL_USERID + ") REFERENCES " + TABLE_USERS +
+                    "(" + KEY_USER_ID + "));";
 
     private final Context context;
     private MyDatabaseHelper DBHelper;
@@ -87,6 +104,7 @@ public class DBManager {
             db.execSQL(CREATE_USERS_TABLE);
             db.execSQL(CREATE_BICYCLE_TABLE);
             db.execSQL(CREATE_RIDE_TABLE);
+            db.execSQL(CREATE_GOAL_TABLE);
         }
 
         @Override
@@ -94,6 +112,7 @@ public class DBManager {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_BICYCLES);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_RIDES);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOALS);
 
             onCreate(db);
         }
@@ -128,14 +147,23 @@ public class DBManager {
         return db.insert(TABLE_BICYCLES, null, initialValues);
     }
 
-    public long insertRide(String rName, String rDate, int dur, int uId, int bikeId) {
+    public long insertRide(String rName, String rDate, int dur, int dist, int uId, int bikeId) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_RIDE_RIDENAME, rName);
         initialValues.put(KEY_RIDE_RIDEDATE, rDate);
         initialValues.put(KEY_RIDE_RIDEDURATION, dur);
+        initialValues.put(KEY_RIDE_RIDEDISTANCE, dist);
         initialValues.put(KEY_RIDE_USERID, uId);
         initialValues.put(KEY_RIDE_BICYCLEID, bikeId);
         return db.insert(TABLE_RIDES, null, initialValues);
+    }
+
+    public long insertGoal(int val, int comp, int uId) {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_GOAL_VALUE, val);
+        initialValues.put(KEY_GOAL_COMPLETED, comp);
+        initialValues.put(KEY_GOAL_USERID, uId);
+        return db.insert(TABLE_GOALS, null, initialValues);
     }
 
     public Cursor getRides() {
@@ -163,6 +191,39 @@ public class DBManager {
     public Cursor getBikes() {
         Cursor mCursor = db.rawQuery(
                 "SELECT * FROM " + TABLE_BICYCLES + ";", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor getGoals() {
+        Cursor mCursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_GOALS + ";", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor getRidesSum() {
+        Cursor mCursor = db.rawQuery(
+                "SELECT SUM(" + KEY_RIDE_RIDEDISTANCE +")  AS total FROM " + TABLE_RIDES + ";", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
+    public Cursor updateGoalComp() {
+        Cursor mCursor = db.rawQuery(
+                "UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_COMPLETED + " = 1 WHERE _userid = 1;", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

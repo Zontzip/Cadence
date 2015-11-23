@@ -14,21 +14,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        android:paddingRight="30dp"/>
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"/>
 
     <TextView
         android:id="@+id/text_bike_name"
         android:text="Loading..."
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/img_bike_pic"/>
+        android:layout_toEndOf="@+id/img_bike_pic"/>
 
     <TextView
-        android:id="@+id/text_ride_date"
+        android:id="@+id/text_bike_note"
         android:text="Loading..."
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/img_bike_pic"
+        android:layout_toEndOf="@+id/img_bike_pic"
         android:layout_below="@+id/text_bike_name"/>
 
 </RelativeLayout>

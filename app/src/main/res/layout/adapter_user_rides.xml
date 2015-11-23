@@ -19,14 +19,14 @@
     <TextView
         android:id="@+id/text_ride_name"
         android:text="Loading..."
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/img_ride_pic"/>
 
     <TextView
         android:id="@+id/text_ride_date"
         android:text="Loading..."
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/img_ride_pic"
         android:layout_below="@+id/text_ride_name"/>

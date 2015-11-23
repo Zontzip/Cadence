@@ -36,7 +36,7 @@ public class RideAddActivity extends Activity {
             public void onClick(View v) {
                 try {
                     db.open();
-                    db.insertRide(rideName.getText().toString(), date, Integer.parseInt(rideDuration.getText().toString()), 1, 1);
+                    db.insertRide(rideName.getText().toString(), date, Integer.parseInt(rideDuration.getText().toString()), 20, 1, 1);
                     db.close();
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",

@@ -21,11 +21,14 @@ public class UserBikesCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView rideName = (TextView) view.findViewById(R.id.text_bike_name);
+        TextView bikeName = (TextView) view.findViewById(R.id.text_bike_name);
+        TextView bikeNote = (TextView) view.findViewById(R.id.text_bike_note);
 
         String name = cursor.getString(cursor.getColumnIndex("bicyclename"));
+        String note = cursor.getString(cursor.getColumnIndex("bicyclenotes"));
 
-        rideName.setText(name);
+        bikeName.setText(name);
+        bikeNote.setText(note);
     }
 }
 
