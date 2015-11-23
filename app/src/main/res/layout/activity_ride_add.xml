@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,42 +14,62 @@
         android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/text_ride_name"
         android:text="Ride Name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_add_ride_title"/>
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/editText_ride_name"
         android:hint="Enter ride name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_ride_name"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/text_ride_duration"
         android:text="Ride Duration"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_ride_name"/>
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/editText_ride_duration"
         android:hint="Enter ride duration"
         android:inputType="number"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_ride_duration"/>
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text_ride_distance"
+        android:text="Ride Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editText_ride_distance"
+        android:hint="Enter ride distance"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text__user_bike"
+        android:text="Bicycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:id="@+id/spinner_user_bike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
 
     <Button
         android:id="@+id/button_add_ride"
         android:text="Submit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_ride_duration"/>
+        android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+</LinearLayout>
