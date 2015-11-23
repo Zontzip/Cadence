@@ -7,7 +7,6 @@
     <string-array name="bikes_array">
         <item>Road Bike</item>
         <item>Track Bike</item>
-        <item>Triathlon Bike</item>
         <item>City Bike</item>
         <item>Mountain Bike</item>
     </string-array>

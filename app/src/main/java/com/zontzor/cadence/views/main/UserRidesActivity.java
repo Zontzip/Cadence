@@ -74,13 +74,12 @@ public class UserRidesActivity extends Activity {
                 return true;
             case R.id.item_delete:
                 try {
-                    Cursor cursor;
-
                     db.open();
-                    cursor = db.deleteRide(index);
-                    cursor = db.getRides();
-                    db.close();
 
+                    Cursor cursor = db.deleteRide(index);
+                    cursor = db.getRides();
+
+                    db.close();
                     cursorAdapter.changeCursor(cursor);
                 } catch (Exception ex) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",

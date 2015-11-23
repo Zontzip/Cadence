@@ -10,37 +10,35 @@ import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
 
 public class UserGoalsActivity extends Activity {
-    TextView goal;
-    TextView dist;
+    TextView txtGoal;
+    TextView txtDist;
     DBManager db = new DBManager(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_goals);
 
-        goal = (TextView) findViewById(R.id.text_goal);
-        dist = (TextView) findViewById(R.id.text_kmweek);
+        txtGoal = (TextView) findViewById(R.id.text_goal);
+        txtDist = (TextView) findViewById(R.id.text_kmweek);
 
         try {
-            Cursor goals;
-            Cursor sumRides;
+            Cursor csrGoals;
+            Cursor crsDistance;
 
             db.open();
-            goals = db.getGoals();
-            sumRides = db.getRidesSum();
+            csrGoals = db.getGoals();
+            crsDistance = db.getRidesSum();
             db.close();
 
-            // User distance so far
-            String sum;
-            sum = sumRides.getString(sumRides.getColumnIndex("total"));
-            dist.setText(sum);
+            // Users distance so far
+            int usrDist = csrGoals.getColumnIndex("goalvalue");
+            txtGoal.setText(csrGoals.getString(csrGoals.getColumnIndex("goalvalue")));
 
-            // User goal distance
-            String distance;
-            distance = goals.getString(goals.getColumnIndex("goalvalue"));
-            goal.setText(distance);
+            // Users goal distance
+            int usrGoal = crsDistance.getColumnIndex("total");
+            txtDist.setText(crsDistance.getString(crsDistance.getColumnIndex("total")));
 
-            updateGoal(sum, distance);
+            updateGoal(usrDist, usrGoal);
         } catch (Exception ex) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                     Toast.LENGTH_SHORT);
@@ -48,19 +46,16 @@ public class UserGoalsActivity extends Activity {
         }
     }
 
-    public void updateGoal(String sum, String distance) {
-        Cursor updateGoal;
-
-        int sumI = Integer.parseInt(sum);
-        int distanceI = Integer.parseInt(distance);
-
-        if (sumI > distanceI) {
+    public void updateGoal(int usrDist, int usrGoal) {
+        if (usrDist > usrGoal) {
             try {
-                Cursor goals;
-
                 db.open();
-                goals = db.updateGoalComp();
+                db.updateGoalComp();
                 db.close();
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Goal completed!",
+                        Toast.LENGTH_SHORT);
+                toast.show();
             } catch (Exception ex) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                         Toast.LENGTH_SHORT);
