@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    public void testDB() {
+    private void testDB() {
         try {
             db.open();
             Cursor rides = db.getRides();

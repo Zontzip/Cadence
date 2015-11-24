@@ -1,8 +1,12 @@
 package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +19,30 @@ public class UserProfileActivity extends Activity {
     DBManager db = new DBManager(this);
     Cursor cursor;
 
+    ImageView imgProfile;
     TextView txtName;
     TextView txtRides;
     TextView txtBikes;
     TextView txtGoals;
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        imgProfile = (ImageView) findViewById(R.id.img_profile);
+
         getValues();
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(), "You clicked the picture!",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
     }
 
     public void getValues() {
@@ -66,6 +84,13 @@ public class UserProfileActivity extends Activity {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                     Toast.LENGTH_SHORT);
             toast.show();
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 }
