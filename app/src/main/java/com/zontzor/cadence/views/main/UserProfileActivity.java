@@ -8,32 +8,58 @@ import android.widget.Toast;
 
 import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
-import com.zontzor.cadence.views.adapters.UserRidesCursorAdapter;
 
-import org.w3c.dom.Text;
+import junit.framework.TestCase;
 
 public class UserProfileActivity extends Activity {
     DBManager db = new DBManager(this);
     Cursor cursor;
 
+    TextView txtName;
+    TextView txtRides;
+    TextView txtBikes;
+    TextView txtGoals;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        TextView txtName = (TextView) findViewById(R.id.text_profile_name);
-        TextView txtRides = (TextView) findViewById(R.id.text_profile_rides);
+        getValues();
+    }
+
+    public void getValues() {
+        txtName = (TextView) findViewById(R.id.text_profile_name);
+        txtRides = (TextView) findViewById(R.id.text_profile_rides);
+        txtBikes = (TextView) findViewById(R.id.text_profile_bikes);
+        txtGoals = (TextView) findViewById(R.id.text_profile_goals);
 
         try {
             db.open();
             // Get users fullname
             cursor = db.getUser();
             String name = cursor.getString(cursor.getColumnIndex("name"));
-            txtName.setText("Welcome " + name);
+            txtName.setText(name);
             // Get users number of rides
             cursor = db.getRides();
             int rideCount = cursor.getCount();
             String rideCounts = Integer.toString(rideCount);
             txtRides.setText(rideCounts);
+            // Get users total number of bikes
+            cursor = db.getBikes();
+            int bikeCount = cursor.getCount();
+            String bikeCounts = Integer.toString(bikeCount);
+            txtBikes.setText(bikeCounts);
+            // Check if user reached goal
+            cursor = db.getGoals();
+            String userGoal = cursor.getString(cursor.getColumnIndex("completed"));
+            String foo;
+
+            if (userGoal.equals("1")) {
+                foo = "Completed";
+            } else {
+                foo = "Not Completed";
+            }
+            txtGoals.setText(foo);
 
             db.close();
         } catch (Exception ex) {

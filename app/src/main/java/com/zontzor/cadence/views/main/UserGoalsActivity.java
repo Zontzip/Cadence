@@ -50,7 +50,7 @@ public class UserGoalsActivity extends Activity {
         if (usrDist > usrGoal) {
             try {
                 db.open();
-                db.updateGoalComp();
+                Cursor cursor = db.updateGoalComp();
                 db.close();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Goal completed!",

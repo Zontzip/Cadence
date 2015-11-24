@@ -8,12 +8,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id="@+id/text_profile_label"
-        android:text="Profile"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/img_profile"
+        android:src="@mipmap/ic_user_profile_test"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"/>
 
     <TextView
@@ -21,33 +20,91 @@
         android:text="Welcome "
         android:textSize="24sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/text_profile_label_rides"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Rides"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/text_profile_rides"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text_profile_label_bikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Number of bikes"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/text_profile_label_rides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Rides"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"/>
 
-    <TextView
-        android:id="@+id/text_profile_label_goals"
+        <TextView
+            android:id="@+id/text_profile_rides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:paddingLeft="48sp"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_toEndOf="@+id/text_profile_label_rides"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goals"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_profile_label_bikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of bikes"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"/>
+
+        <TextView
+            android:id="@+id/text_profile_bikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_toEndOf="@+id/text_profile_label_bikes"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_profile_label_goals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goals"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"/>
+
+        <TextView
+            android:id="@+id/text_profile_goals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:paddingLeft="85sp"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_toEndOf="@+id/text_profile_label_goals"/>
+
+    </RelativeLayout>
 </LinearLayout>
