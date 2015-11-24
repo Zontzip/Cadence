@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -15,6 +16,9 @@ import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
 
 import junit.framework.TestCase;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 public class UserProfileActivity extends Activity {
     DBManager db = new DBManager(this);
@@ -78,6 +82,12 @@ public class UserProfileActivity extends Activity {
             }
             txtGoals.setText(foo);
 
+            cursor = db.getUser();
+            byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
+            ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
+            Bitmap theImage= BitmapFactory.decodeStream(imageStream);
+            imgProfile.setImageBitmap(theImage);
+
             db.close();
         } catch (Exception ex) {
             Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
@@ -97,6 +107,21 @@ public class UserProfileActivity extends Activity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+            byte[] bArray = bos.toByteArray();
+
+            try {
+                db.open();
+                db.insertProfilePic(bArray);
+                db.close();
+            } catch (Exception ex) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
             imgProfile.setImageBitmap(imageBitmap);
         }
     }

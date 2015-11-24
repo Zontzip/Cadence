@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 22;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -19,6 +19,7 @@ public class DBManager {
     private static final String KEY_USER_USERNAME = "username";
     private static final String KEY_USER_PASSWORD = "password";
     private static final String KEY_USER_NAME = "name";
+    private static final String KEY_USER_PROFILEPIC = "profilepic";
 
     private static final String TABLE_BICYCLES = "Bicycles";
     private static final String KEY_BICYCLE_ID = "_id";
@@ -48,7 +49,8 @@ public class DBManager {
             KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_USER_USERNAME + " TEXT," +
             KEY_USER_PASSWORD + " TEXT," +
-            KEY_USER_NAME + " TEXT);";
+            KEY_USER_NAME + " TEXT, " +
+            KEY_USER_PROFILEPIC + " BLOB);";
 
     private static final String CREATE_BICYCLE_TABLE =
         "CREATE TABLE " + TABLE_BICYCLES + " (" +
@@ -164,6 +166,14 @@ public class DBManager {
         initialValues.put(KEY_GOAL_COMPLETED, comp);
         initialValues.put(KEY_GOAL_USERID, uId);
         return db.insert(TABLE_GOALS, null, initialValues);
+    }
+
+    public long insertProfilePic(byte[] bArray ) {
+        String where = "_id=?";
+        String[] whereArgs = new String[] {"1"};
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_USER_PROFILEPIC, bArray);
+        return db.update(TABLE_USERS, initialValues, where, whereArgs);
     }
 
     public Cursor getRides() {
