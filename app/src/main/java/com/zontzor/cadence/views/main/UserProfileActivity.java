@@ -3,6 +3,7 @@ package com.zontzor.cadence.views.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -38,9 +39,7 @@ public class UserProfileActivity extends Activity {
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "You clicked the picture!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                dispatchTakePictureIntent();
             }
         });
     }
@@ -91,6 +90,14 @@ public class UserProfileActivity extends Activity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imgProfile.setImageBitmap(imageBitmap);
         }
     }
 }
