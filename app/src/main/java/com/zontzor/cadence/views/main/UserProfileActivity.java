@@ -15,9 +15,6 @@ import android.widget.Toast;
 import com.zontzor.cadence.R;
 import com.zontzor.cadence.network.DBManager;
 
-import junit.framework.TestCase;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 public class UserProfileActivity extends Activity {
@@ -84,9 +81,8 @@ public class UserProfileActivity extends Activity {
 
             cursor = db.getUser();
             byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
-            ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
-            Bitmap theImage= BitmapFactory.decodeStream(imageStream);
-            imgProfile.setImageBitmap(theImage);
+            Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
+            imgProfile.setImageBitmap(Bitmap.createScaledBitmap(theImage, 100, 100, false));
 
             db.close();
         } catch (Exception ex) {

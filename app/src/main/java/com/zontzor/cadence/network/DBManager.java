@@ -231,6 +231,18 @@ public class DBManager {
         return mCursor;
     }
 
+    public Cursor updateGoal(int goal) {
+        Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_VALUE + " = " +
+                        goal + " WHERE _userid = 1;", null);
+
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+    }
+
     public Cursor updateGoalComp() {
         Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_COMPLETED + " = 1 " +
                 "WHERE _userid = 1;", null);
