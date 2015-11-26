@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import com.zontzor.cadence.views.adapters.MainMenuGridAdapter;
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 
+/**
+ * Setups the main menu grid view
+ */
 public class MainActivity extends Activity {
     GridView gridView;
     DBManager db = new DBManager(this);
@@ -30,6 +33,7 @@ public class MainActivity extends Activity {
         setupGrid();
     }
 
+    /** Initialises grid with menu options */
     public void setupGrid() {
         gridView = (GridView) findViewById(R.id.menu_grid);
         gridView.setAdapter(new MainMenuGridAdapter(this, options));
@@ -61,6 +65,7 @@ public class MainActivity extends Activity {
         });
     }
 
+    /** Checks if data exists in database and if not, inserts initial data */
     private void testDB() {
         try {
             db.open();
@@ -84,10 +89,10 @@ public class MainActivity extends Activity {
 
                 db.insertRide("Lunch Ride", "22/11/2015", 3, 70, 1, 1);
                 db.insertRide("Morning Commute", "22/11/2015", 1, 20, 1, 2);
-                db.insertRide("Test Ride 1", "22/11/2015", 3, 1, 30, 1);
+                db.insertRide("Test Ride 1", "22/11/2015", 3, 30, 1, 1);
                 db.insertRide("Test Commute 1", "22/11/2015", 1, 30, 1, 2);
-                db.insertRide("Test Ride 2", "22/11/2015", 3, 1, 120, 1);
-                db.insertRide("Test Commute 2", "22/11/2015", 1, 1, 20, 2);
+                db.insertRide("Test Ride 2", "22/11/2015", 3, 120, 1, 1);
+                db.insertRide("Test Commute 2", "22/11/2015", 1, 20, 2, 1);
 
                 db.insertGoal(100, 0, 1);
             }

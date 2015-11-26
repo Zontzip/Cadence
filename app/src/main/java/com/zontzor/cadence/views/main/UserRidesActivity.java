@@ -14,10 +14,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 import com.zontzor.cadence.views.sub.RideAddActivity;
 import com.zontzor.cadence.views.adapters.UserRidesCursorAdapter;
 
+/**
+ * Creates list of users rides contained in database, initialises context menu
+ */
 public class UserRidesActivity extends Activity {
     DBManager db = new DBManager(this);
     ListView listRides;
@@ -54,7 +57,7 @@ public class UserRidesActivity extends Activity {
         });
     }
 
-    // Handles context menu creation
+    /** Handles context menu creation */
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo){
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -62,7 +65,7 @@ public class UserRidesActivity extends Activity {
         inflater.inflate(R.menu.menu_view_ride, menu);
     }
 
-    // Handles context menu click event
+    /** Handles context menu selection, updates list on completion */
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
@@ -70,14 +73,12 @@ public class UserRidesActivity extends Activity {
         int index = (int) info.id;
 
         switch (item.getItemId()) {
-            case R.id.item_edit:
-                return true;
             case R.id.item_delete:
                 try {
                     db.open();
 
-                    Cursor cursor = db.deleteRide(index);
-                    cursor = db.getRides();
+                    db.deleteRide(index);
+                    Cursor cursor = db.getRides();
 
                     db.close();
                     cursorAdapter.changeCursor(cursor);

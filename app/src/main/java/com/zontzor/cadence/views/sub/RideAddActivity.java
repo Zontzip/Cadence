@@ -1,7 +1,6 @@
 package com.zontzor.cadence.views.sub;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +9,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Insert new ride into database
+ */
 public class RideAddActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText rideName;
@@ -32,7 +33,7 @@ public class RideAddActivity extends Activity {
         rideDuration = (EditText) findViewById(R.id.editText_ride_duration);
         rideDistance = (EditText) findViewById(R.id.editText_ride_distance);
         btnAddRide = (Button) findViewById(R.id.button_add_ride);
-        spinner = (Spinner) findViewById(R.id.spinner_user_bike);
+        //spinner = (Spinner) findViewById(R.id.spinner_user_bike);
 
         final String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 

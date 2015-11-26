@@ -1,16 +1,15 @@
-package com.zontzor.cadence.network;
+package com.zontzor.cadence.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 26;
+    private static final int DATABASE_VERSION = 29;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -43,6 +42,8 @@ public class DBManager {
     private static final String KEY_GOAL_VALUE = "goalvalue";
     private static final String KEY_GOAL_COMPLETED = "completed";
     private static final String KEY_GOAL_USERID = "_userid";
+
+    private static final String EQUALS_SIGN = " = ";
 
     private static final String CREATE_USERS_TABLE =
         "CREATE TABLE " + TABLE_USERS + " (" +
@@ -243,35 +244,18 @@ public class DBManager {
         return mCursor;
     }
 
-    public Cursor updateGoalComp(int bool) {
-        Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_COMPLETED + " = "
-                + bool + " WHERE _userid = 1;", null);
+    public void updateGoalComp(int value, int userId) {
+        ContentValues args = new ContentValues();
+        args.put(KEY_GOAL_COMPLETED, value);
 
-
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-
-        return mCursor;
+        db.update(TABLE_GOALS, args, KEY_GOAL_USERID + EQUALS_SIGN + userId, null);
     }
 
-    public Cursor deleteRide(int id) {
-        Cursor mCursor = db.rawQuery("DELETE FROM " + TABLE_RIDES + " WHERE " + KEY_RIDE_ID + " = "
-                + id + ";", null);
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-
-        return mCursor;
+    public void deleteRide(int id) {
+        db.delete(TABLE_RIDES, KEY_RIDE_ID + EQUALS_SIGN + id, null);
     }
 
-    public Cursor deleteBike(int id) {
-        Cursor mCursor = db.rawQuery("DELETE FROM " + TABLE_BICYCLES + " WHERE " + KEY_BICYCLE_ID + " = "
-                + id + ";", null);
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-
-        return mCursor;
+    public void deleteBike(int id) {
+        db.delete(TABLE_BICYCLES, KEY_BICYCLE_ID + EQUALS_SIGN + id, null);
     }
 }

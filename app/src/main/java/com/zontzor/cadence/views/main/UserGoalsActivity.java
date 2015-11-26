@@ -10,8 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 import com.zontzor.cadence.views.sub.GoalUpdateActivity;
+
+/**
+ * Displays the users goal and distance completed so far
+ */
 
 public class UserGoalsActivity extends Activity {
     TextView txtGoal;
@@ -23,8 +27,8 @@ public class UserGoalsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_goals);
 
-        txtGoal = (TextView) findViewById(R.id.text_goal);
         txtDist = (TextView) findViewById(R.id.text_kmweek);
+        txtGoal = (TextView) findViewById(R.id.text_goal);
         btnUpdate = (Button) findViewById(R.id.btn_goals_update);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -37,20 +41,20 @@ public class UserGoalsActivity extends Activity {
 
         try {
             Cursor crsDistance;
-            Cursor csrGoals;
+            Cursor crsGoals;
 
             db.open();
             crsDistance = db.getRidesSum();
-            csrGoals = db.getGoals();
+            crsGoals = db.getGoals();
             db.close();
 
             // Users distance so far
-            int usrDist = crsDistance.getColumnIndex("total");
-            txtGoal.setText(crsDistance.getString(crsDistance.getColumnIndex("total")));
+            int usrDist = crsDistance.getInt(crsDistance.getColumnIndex("total"));
+            txtDist.setText(crsDistance.getString(crsDistance.getColumnIndex("total")));
 
             // Users goal distance
-            int usrGoal = csrGoals.getColumnIndex("goalvalue");
-            txtDist.setText(csrGoals.getString(csrGoals.getColumnIndex("goalvalue")));
+            int usrGoal =  crsGoals.getInt(crsGoals.getColumnIndex("goalvalue"));
+            txtGoal.setText(crsGoals.getString(crsGoals.getColumnIndex("goalvalue")));
 
             updateGoal(usrDist, usrGoal);
         } catch (Exception ex) {
@@ -60,11 +64,12 @@ public class UserGoalsActivity extends Activity {
         }
     }
 
+    /** Updates the users goal to completed if total distance of rides are more than the goal */
     public void updateGoal(int usrDist, int usrGoal) {
         if (usrDist > usrGoal) {
             try {
                 db.open();
-                Cursor cursor = db.updateGoalComp(1);
+                db.updateGoalComp(1, 1);
                 db.close();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Goal completed!",
@@ -78,7 +83,7 @@ public class UserGoalsActivity extends Activity {
         } else {
             try {
                 db.open();
-                Cursor cursor = db.updateGoalComp(0);
+                db.updateGoalComp(0, 1);
                 db.close();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Goal not completed",

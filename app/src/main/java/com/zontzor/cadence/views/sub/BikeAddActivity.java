@@ -1,7 +1,6 @@
 package com.zontzor.cadence.views.sub;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,8 +10,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 
+/** Allows user to add new ride to database */
 public class BikeAddActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText bikeName;
@@ -29,12 +29,9 @@ public class BikeAddActivity extends Activity {
         btnAddBike = (Button) findViewById(R.id.button_add_bike);
         spinner = (Spinner) findViewById(R.id.spinner_bike_type);
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.bikes_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
         btnAddBike.setOnClickListener(new View.OnClickListener() {

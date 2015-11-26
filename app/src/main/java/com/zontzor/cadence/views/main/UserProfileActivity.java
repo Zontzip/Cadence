@@ -13,10 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 
 import java.io.ByteArrayOutputStream;
 
+/**
+ * Displays information related to the user, user can tap on profile to take new picture
+ */
 public class UserProfileActivity extends Activity {
     DBManager db = new DBManager(this);
     Cursor cursor;
@@ -45,6 +48,7 @@ public class UserProfileActivity extends Activity {
         });
     }
 
+    /** Retrieves and displays info about the user from database */
     public void getValues() {
         txtName = (TextView) findViewById(R.id.text_profile_name);
         txtRides = (TextView) findViewById(R.id.text_profile_rides);
@@ -79,6 +83,7 @@ public class UserProfileActivity extends Activity {
             }
             txtGoals.setText(foo);
 
+            // Set the users profile picture
             cursor = db.getUser();
             byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
             Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
@@ -92,13 +97,14 @@ public class UserProfileActivity extends Activity {
         }
     }
 
+    /** Start camera activity */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
+    /** Call back method for actvity; stores the image taken in databae */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();

@@ -8,8 +8,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
-import com.zontzor.cadence.network.DBManager;
+import com.zontzor.cadence.controller.DBManager;
 
+/**
+ * Updates user goal to inputted value
+ */
 public class GoalUpdateActivity extends Activity {
     DBManager db = new DBManager(this);
 
