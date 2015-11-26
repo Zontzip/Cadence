@@ -1,11 +1,11 @@
 package com.zontzor.cadence.views.sub;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zontzor.cadence.R;
@@ -23,7 +23,6 @@ public class RideAddActivity extends Activity {
     EditText rideDuration;
     EditText rideDistance;
     Button btnAddRide;
-    Spinner spinner;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +32,6 @@ public class RideAddActivity extends Activity {
         rideDuration = (EditText) findViewById(R.id.editText_ride_duration);
         rideDistance = (EditText) findViewById(R.id.editText_ride_distance);
         btnAddRide = (Button) findViewById(R.id.button_add_ride);
-        //spinner = (Spinner) findViewById(R.id.spinner_user_bike);
 
         final String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
@@ -53,6 +51,7 @@ public class RideAddActivity extends Activity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Ride added",
                             Toast.LENGTH_SHORT);
                     toast.show();
+
                     rideName.setText("");
                     rideDuration.setText("");
                     rideDistance.setText("");

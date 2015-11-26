@@ -16,11 +16,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
     <TextView
         android:id="@+id/text_ride_name"
         android:text="Ride Name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <EditText
         android:id="@+id/editText_ride_name"
@@ -32,7 +38,8 @@
         android:id="@+id/text_ride_duration"
         android:text="Ride Duration"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <EditText
         android:id="@+id/editText_ride_duration"
@@ -45,7 +52,8 @@
         android:id="@+id/text_ride_distance"
         android:text="Ride Distance"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <EditText
         android:id="@+id/editText_ride_distance"
@@ -53,23 +61,12 @@
         android:inputType="number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <!--
-        <TextView
-            android:id="@+id/text__user_bike"
-            android:text="Bicycle"
-            android:layout_width="wrap_content"
-            android:layout_height="wcontent"/>
-
-        <Spinner
-            android:id="@+id/spinner_user_bike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Spinner>-->
 
     <Button
         android:id="@+id/button_add_ride"
         android:text="Submit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

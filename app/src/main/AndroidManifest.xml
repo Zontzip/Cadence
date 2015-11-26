@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zontzor.cadence" >
+    package="com.zontzor.cadence">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo.Light" >
-        <activity android:name=".views.main.MainActivity" >
+        android:theme="@android:style/Theme.Holo.Light">
+        <activity android:name=".views.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.main.UserProfileActivity" >
-        </activity>
-        <activity android:name=".views.main.UserRidesActivity" >
-        </activity>
-        <activity android:name=".views.main.UserGoalsActivity" >
-        </activity>
-        <activity android:name=".views.main.UserBikesActivity" >
-        </activity>
-        <activity android:name=".views.sub.RideAddActivity" >
-        </activity>
-        <activity android:name=".views.sub.BikeAddActivity" >
-        </activity>
-        <activity android:name=".views.sub.GoalUpdateActivity" >
-        </activity>
+        <activity android:name=".views.main.UserProfileActivity"></activity>
+        <activity android:name=".views.main.UserRidesActivity"></activity>
+        <activity android:name=".views.main.UserGoalsActivity"></activity>
+        <activity android:name=".views.main.UserBikesActivity"></activity>
+        <activity android:name=".views.sub.RideAddActivity"></activity>
+        <activity android:name=".views.sub.BikeAddActivity"></activity>
+        <activity android:name=".views.sub.GoalUpdateActivity"></activity>
+
     </application>
 
 </manifest>

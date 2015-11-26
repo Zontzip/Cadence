@@ -10,4 +10,7 @@
         <item>City Bike</item>
         <item>Mountain Bike</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="user_profile_picture">User Profile Picture</string>
+    <string name="loading">Loading</string>
 </resources>

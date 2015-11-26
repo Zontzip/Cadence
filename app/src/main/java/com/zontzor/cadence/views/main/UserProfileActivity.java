@@ -62,7 +62,7 @@ public class UserProfileActivity extends Activity {
             String name = cursor.getString(cursor.getColumnIndex("name"));
             txtName.setText(name);
             // Get users number of rides
-            cursor = db.getRides();
+            cursor = db.getRides(1);
             int rideCount = cursor.getCount();
             String rideCounts = Integer.toString(rideCount);
             txtRides.setText(rideCounts);
@@ -87,7 +87,7 @@ public class UserProfileActivity extends Activity {
             cursor = db.getUser();
             byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
             Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
-            imgProfile.setImageBitmap(Bitmap.createScaledBitmap(theImage, 100, 100, false));
+            imgProfile.setImageBitmap(theImage);
 
             db.close();
         } catch (Exception ex) {
@@ -104,7 +104,7 @@ public class UserProfileActivity extends Activity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-    /** Call back method for actvity; stores the image taken in databae */
+    /** Call back method for camera activity; stores the image taken in database */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();

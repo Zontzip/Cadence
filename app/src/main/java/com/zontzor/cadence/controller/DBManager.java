@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 29;
+    private static final int DATABASE_VERSION = 36;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -177,9 +177,21 @@ public class DBManager {
         return db.update(TABLE_USERS, initialValues, where, whereArgs);
     }
 
-    public Cursor getRides() {
-        Cursor mCursor = db.rawQuery(
-                "SELECT * FROM " + TABLE_RIDES + ";", null);
+    public Cursor getRides(int userId) {
+        String[] tableColumns = {
+                KEY_RIDE_RIDENAME,
+                KEY_RIDE_RIDEDATE
+        };
+
+        Cursor mCursor = db.query(
+            TABLE_RIDES,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+            );
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -189,8 +201,15 @@ public class DBManager {
     }
 
     public Cursor getUser() {
-        Cursor mCursor = db.rawQuery(
-                "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_ID + " = 1;", null);
+        Cursor mCursor = db.query(
+                TABLE_USERS,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -200,8 +219,15 @@ public class DBManager {
     }
 
     public Cursor getBikes() {
-        Cursor mCursor = db.rawQuery(
-                "SELECT * FROM " + TABLE_BICYCLES + ";", null);
+        Cursor mCursor = db.query(
+                TABLE_BICYCLES,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -211,8 +237,15 @@ public class DBManager {
     }
 
     public Cursor getGoals() {
-        Cursor mCursor = db.rawQuery(
-                "SELECT * FROM " + TABLE_GOALS + ";", null);
+        Cursor mCursor = db.query(
+                TABLE_GOALS,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -232,16 +265,11 @@ public class DBManager {
         return mCursor;
     }
 
-    public Cursor updateGoal(int goal) {
-        Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_VALUE + " = " +
-                        goal + " WHERE _userid = 1;", null);
+    public void updateGoal(int value, int userId) {
+        ContentValues args = new ContentValues();
+        args.put(KEY_GOAL_VALUE, value);
 
-
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-
-        return mCursor;
+        db.update(TABLE_GOALS, args, KEY_GOAL_USERID + EQUALS_SIGN + userId, null);
     }
 
     public void updateGoalComp(int value, int userId) {

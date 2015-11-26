@@ -30,10 +30,9 @@ public class GoalUpdateActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    String goal = editTextUpdateGoal.getText().toString();
-                    int foo = Integer.parseInt(goal);
+                    int value = Integer.parseInt(editTextUpdateGoal.getText().toString());
                     db.open();
-                    db.updateGoal(foo);
+                    db.updateGoal(value, 1);
                     db.close();
                     editTextUpdateGoal.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(), "Goal updated",

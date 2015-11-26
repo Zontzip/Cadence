@@ -37,7 +37,7 @@ public class UserRidesActivity extends Activity {
         try {
             db.open();
 
-            Cursor rides = db.getRides();
+            Cursor rides = db.getRides(1);
             cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
             listRides.setAdapter(cursorAdapter);
 
@@ -78,7 +78,7 @@ public class UserRidesActivity extends Activity {
                     db.open();
 
                     db.deleteRide(index);
-                    Cursor cursor = db.getRides();
+                    Cursor cursor = db.getRides(1);
 
                     db.close();
                     cursorAdapter.changeCursor(cursor);

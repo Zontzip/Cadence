@@ -15,7 +15,7 @@ import com.zontzor.cadence.R;
 import com.zontzor.cadence.controller.DBManager;
 
 /**
- * Setups the main menu grid view
+ * Setup the main menu grid view
  */
 public class MainActivity extends Activity {
     GridView gridView;
@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
     private void testDB() {
         try {
             db.open();
-            Cursor rides = db.getRides();
+            Cursor rides = db.getRides(1);
             String str;
 
             if (rides.moveToFirst()) {
