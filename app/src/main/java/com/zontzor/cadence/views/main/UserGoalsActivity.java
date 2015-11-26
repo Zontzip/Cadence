@@ -36,21 +36,21 @@ public class UserGoalsActivity extends Activity {
         });
 
         try {
-            Cursor csrGoals;
             Cursor crsDistance;
+            Cursor csrGoals;
 
             db.open();
-            csrGoals = db.getGoals();
             crsDistance = db.getRidesSum();
+            csrGoals = db.getGoals();
             db.close();
 
             // Users distance so far
-            int usrDist = csrGoals.getColumnIndex("goalvalue");
-            txtGoal.setText(csrGoals.getString(csrGoals.getColumnIndex("goalvalue")));
+            int usrDist = crsDistance.getColumnIndex("total");
+            txtGoal.setText(crsDistance.getString(crsDistance.getColumnIndex("total")));
 
             // Users goal distance
-            int usrGoal = crsDistance.getColumnIndex("total");
-            txtDist.setText(crsDistance.getString(crsDistance.getColumnIndex("total")));
+            int usrGoal = csrGoals.getColumnIndex("goalvalue");
+            txtDist.setText(csrGoals.getString(csrGoals.getColumnIndex("goalvalue")));
 
             updateGoal(usrDist, usrGoal);
         } catch (Exception ex) {
@@ -64,7 +64,7 @@ public class UserGoalsActivity extends Activity {
         if (usrDist > usrGoal) {
             try {
                 db.open();
-                Cursor cursor = db.updateGoalComp();
+                Cursor cursor = db.updateGoalComp(1);
                 db.close();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Goal completed!",
@@ -76,9 +76,19 @@ public class UserGoalsActivity extends Activity {
                 toast.show();
             }
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Goal not completed",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            try {
+                db.open();
+                Cursor cursor = db.updateGoalComp(0);
+                db.close();
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Goal not completed",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            } catch (Exception ex) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     }
 }

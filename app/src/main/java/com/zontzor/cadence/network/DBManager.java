@@ -10,7 +10,7 @@ import android.util.Log;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 23;
+    private static final int DATABASE_VERSION = 26;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
@@ -243,9 +243,9 @@ public class DBManager {
         return mCursor;
     }
 
-    public Cursor updateGoalComp() {
-        Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_COMPLETED + " = 1 " +
-                "WHERE _userid = 1;", null);
+    public Cursor updateGoalComp(int bool) {
+        Cursor mCursor = db.rawQuery("UPDATE " + TABLE_GOALS + " SET " + KEY_GOAL_COMPLETED + " = "
+                + bool + " WHERE _userid = 1;", null);
 
 
         if (mCursor != null) {
