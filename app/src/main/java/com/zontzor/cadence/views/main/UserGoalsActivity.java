@@ -39,6 +39,11 @@ public class UserGoalsActivity extends Activity {
             }
         });
 
+        updateData();
+    }
+
+    /** Update the text fields containing use data from database */
+    public void updateData() {
         try {
             Cursor crsDistance;
             Cursor crsGoals;
@@ -95,5 +100,10 @@ public class UserGoalsActivity extends Activity {
                 toast.show();
             }
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        updateData();;
     }
 }

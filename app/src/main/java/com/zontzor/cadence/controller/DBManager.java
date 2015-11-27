@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 36;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "Cadence.db";
 
