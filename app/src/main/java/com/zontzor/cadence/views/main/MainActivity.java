@@ -1,12 +1,12 @@
 /**
- * Authour: Alex Kiernan
+ * Author: Alex Kiernan
  *
  * Date: 27/11/2015
  *
  * Desc: Welcome to cadence; a cycling companion app.
  *
  * Users can add rides, bikes and set a goal to be completed.
- * 
+ *
  */
 package com.zontzor.cadence.views.main;
 
