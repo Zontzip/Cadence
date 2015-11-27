@@ -55,6 +55,7 @@ public class RideAddActivity extends Activity {
                     rideName.setText("");
                     rideDuration.setText("");
                     rideDistance.setText("");
+                    finish();
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                             Toast.LENGTH_SHORT);

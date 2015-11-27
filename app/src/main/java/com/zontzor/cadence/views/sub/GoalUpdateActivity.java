@@ -38,6 +38,8 @@ public class GoalUpdateActivity extends Activity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Goal updated",
                             Toast.LENGTH_SHORT);
                     toast.show();
+
+                    finish();
                 } catch (Exception ex) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                             Toast.LENGTH_SHORT);

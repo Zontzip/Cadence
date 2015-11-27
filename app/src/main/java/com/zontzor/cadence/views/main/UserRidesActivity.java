@@ -30,31 +30,7 @@ public class UserRidesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rides);
 
-        listRides = (ListView) findViewById(R.id.list_rides);
-        Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
-        registerForContextMenu(listRides);
-
-        try {
-            db.open();
-
-            Cursor rides = db.getRides(1);
-            cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
-            listRides.setAdapter(cursorAdapter);
-
-            db.close();
-        } catch (Exception ex) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
-                    Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        btnAddRide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addRideActivity = new Intent(UserRidesActivity.this, RideAddActivity.class);
-                startActivity(addRideActivity);
-            }
-        });
+        updateData();
     }
 
     /** Handles context menu creation */
@@ -91,5 +67,39 @@ public class UserRidesActivity extends Activity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    /** Inert data based on values in database */
+    public void updateData() {
+        listRides = (ListView) findViewById(R.id.list_rides);
+        Button btnAddRide = (Button) findViewById(R.id.button_rides_add);
+        registerForContextMenu(listRides);
+
+        try {
+            db.open();
+
+            Cursor rides = db.getRides(1);
+            cursorAdapter = new UserRidesCursorAdapter(UserRidesActivity.this, rides);
+            listRides.setAdapter(cursorAdapter);
+
+            db.close();
+        } catch (Exception ex) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        btnAddRide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addRideActivity = new Intent(UserRidesActivity.this, RideAddActivity.class);
+                startActivity(addRideActivity);
+            }
+        });
+    }
+
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 }

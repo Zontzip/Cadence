@@ -50,6 +50,7 @@ public class BikeAddActivity extends Activity {
 
                     bikeName.setText("");
                     bikeBrand.setText("");
+                    finish();
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
                             Toast.LENGTH_SHORT);

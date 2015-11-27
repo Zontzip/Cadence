@@ -30,31 +30,7 @@ public class UserBikesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_bikes);
 
-        listBikes = (ListView) findViewById(R.id.list_bikes);
-        Button btnAddRide = (Button) findViewById(R.id.button_bikes_add);
-        registerForContextMenu(listBikes);
-
-        try {
-            db.open();
-
-            Cursor bikes = db.getBikes();
-            cursorAdapter = new UserBikesCursorAdapter(UserBikesActivity.this, bikes);
-            listBikes.setAdapter(cursorAdapter);
-
-            db.close();
-        } catch (Exception ex) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
-                    Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        btnAddRide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addBikeActivity = new Intent(UserBikesActivity.this, BikeAddActivity.class);
-                startActivity(addBikeActivity);
-            }
-        });
+        updateData();
     }
 
     /** Handles context menu creation */
@@ -90,5 +66,38 @@ public class UserBikesActivity extends Activity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    public void updateData() {
+        listBikes = (ListView) findViewById(R.id.list_bikes);
+        Button btnAddRide = (Button) findViewById(R.id.button_bikes_add);
+        registerForContextMenu(listBikes);
+
+        try {
+            db.open();
+
+            Cursor bikes = db.getBikes();
+            cursorAdapter = new UserBikesCursorAdapter(UserBikesActivity.this, bikes);
+            listBikes.setAdapter(cursorAdapter);
+
+            db.close();
+        } catch (Exception ex) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Error opening database",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        btnAddRide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addBikeActivity = new Intent(UserBikesActivity.this, BikeAddActivity.class);
+                startActivity(addBikeActivity);
+            }
+        });
+    }
+
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 }
