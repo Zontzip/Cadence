@@ -61,16 +61,19 @@ public class UserProfileActivity extends Activity {
             cursor = db.getUser();
             String name = cursor.getString(cursor.getColumnIndex("name"));
             txtName.setText(name);
+
             // Get users number of rides
             cursor = db.getRides(1);
             int rideCount = cursor.getCount();
             String rideCounts = Integer.toString(rideCount);
             txtRides.setText(rideCounts);
+
             // Get users total number of bikes
             cursor = db.getBikes();
             int bikeCount = cursor.getCount();
             String bikeCounts = Integer.toString(bikeCount);
             txtBikes.setText(bikeCounts);
+
             // Check if user reached goal
             cursor = db.getGoals();
             String userGoal = cursor.getString(cursor.getColumnIndex("completed"));
@@ -89,7 +92,7 @@ public class UserProfileActivity extends Activity {
                 byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
                 Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
                 imgProfile.setImageBitmap(theImage);
-            } catch (Exception ep) {
+            } catch (Exception expected) {
                 Toast toast = Toast.makeText(getApplicationContext(), "No profile image exists",
                         Toast.LENGTH_SHORT);
                 toast.show();

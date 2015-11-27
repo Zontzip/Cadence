@@ -1,3 +1,13 @@
+/**
+ * Authour: Alex Kiernan
+ *
+ * Date: 27/11/2015
+ *
+ * Desc: Welcome to cadence; a cycling companion app.
+ *
+ * Users can add rides, bikes and set a goal to be completed.
+ * 
+ */
 package com.zontzor.cadence.views.main;
 
 import android.app.Activity;
@@ -33,7 +43,7 @@ public class MainActivity extends Activity {
         setupGrid();
     }
 
-    /** Initialises grid with menu options */
+    /** Initialises grid with menu options, user selects activity to start */
     public void setupGrid() {
         gridView = (GridView) findViewById(R.id.menu_grid);
         gridView.setAdapter(new MainMenuGridAdapter(this, options));
@@ -70,7 +80,6 @@ public class MainActivity extends Activity {
         try {
             db.open();
             Cursor rides = db.getRides(1);
-            String str;
 
             if (rides.moveToFirst()) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Database exists",

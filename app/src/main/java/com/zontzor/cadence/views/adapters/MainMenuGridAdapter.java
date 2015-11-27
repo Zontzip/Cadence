@@ -27,9 +27,6 @@ public class MainMenuGridAdapter extends BaseAdapter {
         View gridView;
 
         if (convertView == null) {
-
-            gridView = new View(context);
-
             // get layout from menu_gridview.xml
             gridView = inflater.inflate(R.layout.item_menu_option, null);
 
