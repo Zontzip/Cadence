@@ -84,10 +84,16 @@ public class UserProfileActivity extends Activity {
             txtGoals.setText(foo);
 
             // Set the users profile picture
-            cursor = db.getUser();
-            byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
-            Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
-            imgProfile.setImageBitmap(theImage);
+            try {
+                cursor = db.getUser();
+                byte[] photo = cursor.getBlob(cursor.getColumnIndex("profilepic"));
+                Bitmap theImage= BitmapFactory.decodeByteArray(photo, 0, photo.length);
+                imgProfile.setImageBitmap(theImage);
+            } catch (Exception ep) {
+                Toast toast = Toast.makeText(getApplicationContext(), "No profile image exists",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
 
             db.close();
         } catch (Exception ex) {
